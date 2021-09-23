@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
-#include <cctype>
 #include "LongArithmetic.h"
 
 LongArithmetic::LongArithmetic() {
@@ -12,11 +11,8 @@ LongArithmetic::LongArithmetic(int big_integer) {
     if (big_integer == 0) {
         this->big_integer = "0";
     } else {
-        while (big_integer) {
-            this->big_integer += std::to_string(big_integer % 10);
-            big_integer /= 10;
+            this->big_integer = std::to_string(big_integer);
         }
-    }
 }
 
 LongArithmetic::LongArithmetic(std::string &big_integer) {

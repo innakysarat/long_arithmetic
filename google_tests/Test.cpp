@@ -7,8 +7,12 @@ TEST(LongArithmetic, plusplus) {
     std::string str2 = "4609876543";
     LongArithmetic number1 = LongArithmetic(str);
     LongArithmetic number2 = LongArithmetic(str2);
+    LongArithmetic number3 = LongArithmetic(3456788);
+    LongArithmetic number4 = LongArithmetic(5690790);
     LongArithmetic sum = number1 + number2;
+    LongArithmetic sum2 = number3 + number4;
     EXPECT_EQ(sum.getValue(), "5169753086");
+    EXPECT_EQ(sum2.getValue(), "9147578");
 }
 TEST(LongArithmetic, minusminus) {
     std::string str = "556768475096";
