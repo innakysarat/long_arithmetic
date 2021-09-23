@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/LongArithmetic_run.dir/main.cpp.o  -o LongArithmetic_run  LongArithmetic/libLongArithmetic.a 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libLongArithmetic.a  CMakeFiles/LongArithmetic.dir/LongArithmetic.cpp.o
+/usr/bin/ranlib libLongArithmetic.a
