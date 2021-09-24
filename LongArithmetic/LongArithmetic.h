@@ -1,7 +1,7 @@
 
 class LongArithmetic {
 private:
-    std::string big_integer;
+    std::string value;
     bool sign;
 
     std::string plusInteger(std::string int1, std::string int2);

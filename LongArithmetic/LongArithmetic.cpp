@@ -4,20 +4,21 @@
 #include "LongArithmetic.h"
 
 LongArithmetic::LongArithmetic() {
-    this->big_integer = "0";
+    this->value = "0";
     this->sign = false;
 }
+
 LongArithmetic::LongArithmetic(int big_integer) {
     if (big_integer == 0) {
-        this->big_integer = "0";
+        this->value = "0";
     } else {
-            this->big_integer = std::to_string(big_integer);
-        }
+        this->value = std::to_string(big_integer);
+    }
 }
 
 LongArithmetic::LongArithmetic(std::string &big_integer) {
     this->sign = (big_integer[0] == '-');
-    this->big_integer = big_integer;
+    this->value = big_integer;
 }
 
 void LongArithmetic::setSign(bool sign_number) {
@@ -25,19 +26,33 @@ void LongArithmetic::setSign(bool sign_number) {
 }
 
 LongArithmetic LongArithmetic::operator+(LongArithmetic &big_int) {
-    std::string result_string = plusInteger(big_int.big_integer, this->big_integer);
+    std::string result_string = plusInteger(big_int.value, this->value);
     LongArithmetic result = LongArithmetic(result_string);
     return result;
 }
 
 LongArithmetic LongArithmetic::operator-(LongArithmetic &big_int) {
-    std::string result_string = minusInteger(this->big_integer, big_int.big_integer);
+    std::string result_string;
+    if ((!this->sign && !big_int.sign) && (*this >= big_int)) {
+        result_string = minusInteger(this->getValue(), big_int.getValue());
+    }
+    if ((!this->sign && !big_int.sign) && (*this < big_int)) {
+        result_string = minusInteger(big_int.getValue(), this->getValue());
+        result_string.insert(0, "-");
+    }
+    if (!this->sign && big_int.sign) {
+        result_string = plusInteger(big_int.value.substr(1, big_int.value.length()), this->getValue());
+    }
+    if (this->sign && !big_int.sign) {
+        result_string = plusInteger(big_int.getValue(), (this->value).substr(1, this->value.length()));
+        result_string.insert(0, "-");
+    }
     LongArithmetic result = LongArithmetic(result_string);
     return result;
 }
 
 bool LongArithmetic::operator==(LongArithmetic &big_int) {
-    return (this->big_integer == big_int.big_integer && this->sign == big_int.sign);
+    return (this->getValue() == big_int.getValue() && this->sign == big_int.sign);
 }
 
 bool LongArithmetic::operator>(LongArithmetic &big_int) {
@@ -139,5 +154,5 @@ std::string LongArithmetic::minusInteger(std::string int1, std::string int2) {
 }
 
 std::string LongArithmetic::getValue() {
-    return this->big_integer;
+    return this->value;
 }

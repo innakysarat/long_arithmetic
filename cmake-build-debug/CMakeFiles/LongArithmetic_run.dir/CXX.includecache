@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../LongArithmetic/LongArithmetic.h
+
+/mnt/c/Users/kysar/CLionProjects/long_arithmetic/main.cpp
+iostream
+-
+LongArithmetic.h
+/mnt/c/Users/kysar/CLionProjects/long_arithmetic/LongArithmetic.h
+

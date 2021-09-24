@@ -23,8 +23,10 @@ TEST(LongArithmetic, minusminus) {
     LongArithmetic number3 = LongArithmetic(str3);
     LongArithmetic diff = number1 - number2;
     LongArithmetic diff2 = number1 - number3;
+    LongArithmetic diff3 = number2 - number1;
     EXPECT_EQ(diff.getValue(), "552078624629");
     EXPECT_EQ( diff2.getValue(), "555778709664");
+    EXPECT_EQ( diff3.getValue(), "-552078624629");
 }
 TEST(LongArithmetic, equals) {
     std::string str = "550987658";
