@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/long_arithmetic.dir/main.cpp.o CMakeFiles/long_arithmetic.dir/google_tests/Test.cpp.o CMakeFiles/long_arithmetic.dir/LongArithmetic/operations.cpp.o  -o long_arithmetic 

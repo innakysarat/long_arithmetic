@@ -2,11 +2,9 @@
 #include "gtest/gtest.h"
 #include "LongArithmetic.h"
 
-TEST(LongArithmetic, plusplus) {
-    std::string str = "559876543";
-    std::string str2 = "4609876543";
-    LongArithmetic number1 = LongArithmetic(str);
-    LongArithmetic number2 = LongArithmetic(str2);
+TEST(LongArithmetic, add) {
+    LongArithmetic number1 = LongArithmetic("559876543");
+    LongArithmetic number2 = LongArithmetic("4609876543");
     LongArithmetic number3 = LongArithmetic(3456788);
     LongArithmetic number4 = LongArithmetic(5690790);
     LongArithmetic sum = number1 + number2;
@@ -14,59 +12,48 @@ TEST(LongArithmetic, plusplus) {
     EXPECT_EQ(sum.getValue(), "5169753086");
     EXPECT_EQ(sum2.getValue(), "9147578");
 }
-TEST(LongArithmetic, minusminus) {
-    std::string str = "556768475096";
-    std::string str2 = "4689850467";
-    std::string str3 = "989765432";
-    LongArithmetic number1 = LongArithmetic(str);
-    LongArithmetic number2 = LongArithmetic(str2);
-    LongArithmetic number3 = LongArithmetic(str3);
-    LongArithmetic diff = number1 - number2;
-    LongArithmetic diff2 = number1 - number3;
-    LongArithmetic diff3 = number2 - number1;
-    EXPECT_EQ(diff.getValue(), "552078624629");
-    EXPECT_EQ( diff2.getValue(), "555778709664");
-    EXPECT_EQ( diff3.getValue(), "-552078624629");
+TEST(LongArithmetic, subtract) {
+    LongArithmetic number1 = LongArithmetic("75");
+    LongArithmetic number2 = LongArithmetic("84");
+    LongArithmetic number3 = LongArithmetic("32");
+    LongArithmetic number4 = LongArithmetic(-50);
+    LongArithmetic number5 = LongArithmetic(-100);
+    LongArithmetic number6 = LongArithmetic(172);
+    LongArithmetic number7 = LongArithmetic(73);
+    LongArithmetic diff7 = LongArithmetic(55422424) - LongArithmetic(55422424);
+    EXPECT_EQ((number1 - number2).getValue(), "-9");
+    EXPECT_EQ( (number1 - number3).getValue(), "43");
+    EXPECT_EQ( (number4 - number5).getValue(), "50");
+    EXPECT_EQ( (number5 - number4).getValue(), "-50");
+    EXPECT_EQ((number6 - number7).getValue(), "99");
+    EXPECT_EQ(diff7.getValue(), "0");
 }
 TEST(LongArithmetic, equals) {
-    std::string str = "550987658";
-    std::string str2 = "5509876543";
-    std::string str3 = "550987658";
-    LongArithmetic number1 = LongArithmetic(str);
-    LongArithmetic number2 = LongArithmetic(str2);
-    LongArithmetic number3 = LongArithmetic(str3);
+    LongArithmetic number1 = LongArithmetic("550987658");
+    LongArithmetic number2 = LongArithmetic("5509876543");
+    LongArithmetic number3 = LongArithmetic("550987658");
     EXPECT_EQ(number1 == number2, false);
     EXPECT_EQ(number1 == number3, true);
 }
 TEST(LongArithmetic, greater) {
-    std::string str = "550987658";
-    std::string str2 = "5509876543";
-    std::string str3 = "550987658";
-    std::string str4 = "-87658";
-    std::string str5 = std::to_string(-45678990);
-    LongArithmetic number1 = LongArithmetic(str);
-    LongArithmetic number2 = LongArithmetic(str2);
-    LongArithmetic number3 = LongArithmetic(str3);
-    LongArithmetic number4 = LongArithmetic(str4);
-    LongArithmetic number5 = LongArithmetic(str5);
+    LongArithmetic number1 = LongArithmetic("550987658");
+    LongArithmetic number2 = LongArithmetic("5509876543");
+    LongArithmetic number3 = LongArithmetic("550987658");
+    LongArithmetic number4 = LongArithmetic("550987658");
+    LongArithmetic number5 = LongArithmetic(-45678990);
     EXPECT_EQ(number1 > number2, false);
     EXPECT_EQ(number1 > number3, false);
     EXPECT_EQ(number4 > number1, false);
     EXPECT_EQ(number5 > number4, false);
 }
 TEST(LongArithmetic, less) {
-    std::string str = "550987658";
-    std::string str2 = "5509876543";
-    std::string str3 = "550987658";
-    std::string str4 = "-87658";
-    std::string str5 = std::to_string(-45678990);
-    LongArithmetic number1 = LongArithmetic(str);
-    LongArithmetic number2 = LongArithmetic(str2);
-    LongArithmetic number3 = LongArithmetic(str3);
-    LongArithmetic number4 = LongArithmetic(str4);
-    LongArithmetic number5 = LongArithmetic(str5);
+    LongArithmetic number1 = LongArithmetic("550987658");
+    LongArithmetic number2 = LongArithmetic("5509876543");
+    LongArithmetic number3 = LongArithmetic("550987658");
+    LongArithmetic number4 = LongArithmetic("-87658");
+    LongArithmetic number5 = LongArithmetic(-45678990);
     EXPECT_EQ(number1 < number2, true);
-    EXPECT_EQ(number1 < number3, true);
+    EXPECT_EQ(number1 < number3, false);
     EXPECT_EQ(number4 < number1, true);
     EXPECT_EQ(number5 < number4, true);
 }

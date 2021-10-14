@@ -1,28 +1,44 @@
+#pragma once
 
 class LongArithmetic {
+
 private:
-    std::string value;
-    bool sign;
 
-    std::string plusInteger(std::string int1, std::string int2);
-
-    std::string minusInteger(std::string int1, std::string int2);
+    std::string value = "0";
+    bool sign = false;
 
 public:
-    LongArithmetic();
 
-    explicit LongArithmetic(std::string &big_integer);
-    explicit LongArithmetic(int big_integer);
-    LongArithmetic operator+(LongArithmetic &big_integer);
+    LongArithmetic(const std::string &big_integer);
 
-    LongArithmetic operator-(LongArithmetic &big_integer);
+    LongArithmetic(int big_integer);
 
-    bool operator==(LongArithmetic &big_integer);
-    bool operator>(LongArithmetic &big_integer);
-    bool operator<(LongArithmetic &big_integer);
-    bool operator>=(LongArithmetic &big_integer);
-    bool operator<=(LongArithmetic &big_integer);
+    LongArithmetic &operator+=(const LongArithmetic &value);
 
-    std::string getValue();
-    void setSign(bool sign);
+    LongArithmetic &operator-=(const LongArithmetic &value);
+
+    LongArithmetic operator+(const LongArithmetic &big_integer);
+
+    LongArithmetic operator-(const LongArithmetic &big_integer);
+
+    bool operator==(const LongArithmetic &big_integer) const;
+
+    bool operator>(const LongArithmetic &big_integer) const;
+
+    bool operator<(const LongArithmetic &big_integer) const;
+
+    bool operator>=(const LongArithmetic &big_integer) const;
+
+    bool operator<=(const LongArithmetic &big_integer) const;
+
+    [[nodiscard]] std::string getAbsoluteValue() const {
+        if (value[0] == '-') {
+            return (value).substr(1, value.length());
+        }
+        return value;
+    };
+
+    [[nodiscard]] std::string getValue() const {
+        return value;
+    };
 };
