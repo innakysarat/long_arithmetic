@@ -28,6 +28,19 @@ TEST(LongArithmetic, subtract) {
     EXPECT_EQ((number6 - number7).getValue(), "99");
     EXPECT_EQ(diff7.getValue(), "0");
 }
+
+TEST(LongArithmetic, multiply) {
+    LongArithmetic number1 = LongArithmetic("7545678");
+    LongArithmetic number2 = LongArithmetic("84345");
+    LongArithmetic number3 = LongArithmetic("3");
+    LongArithmetic number4 = LongArithmetic("-3");
+    EXPECT_EQ((number1 * number2).getValue(), "636440210910");
+    EXPECT_EQ( (number1 * number3).getValue(), "22637034");
+    EXPECT_EQ( (number3 * number1).getValue(), "22637034");
+    EXPECT_EQ( (number4 * number1).getValue(), "-22637034");
+    EXPECT_EQ( (number4 * number4).getValue(), (number3 * number3).getValue());
+}
+
 TEST(LongArithmetic, equals) {
     LongArithmetic number1 = LongArithmetic("550987658");
     LongArithmetic number2 = LongArithmetic("5509876543");
@@ -57,6 +70,7 @@ TEST(LongArithmetic, less) {
     EXPECT_EQ(number4 < number1, true);
     EXPECT_EQ(number5 < number4, true);
 }
+
 
 
 

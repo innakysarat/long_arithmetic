@@ -7,8 +7,8 @@
 namespace {
     std::string add(const std::string &number1, const std::string &number2) {
         std::string result;
-        size_t num1_len = number1.length() - 1;
-        size_t num2_len = number2.length() - 1;
+        int num1_len = static_cast<int>(number1.length()) - 1;
+        int num2_len = static_cast<int>(number2.length()) - 1;
         int high_bit = 0;
         while (num1_len >= 0 && num2_len >= 0) {
             int digit = (number1[num1_len] - '0') + (number2[num2_len] - '0') + high_bit;
@@ -70,6 +70,42 @@ namespace {
             }
         }
         result.erase(0, pos);
+        return result;
+    }
+
+    std::string multiply_one_digit(const std::string &num1, const char &num2_digit, int num_zeros) {
+        std::string result;
+        //result.insert(0, "0", num_zeros);
+        int start = static_cast<int>(num1.size()) - 1;
+        int carry = 0;
+        for (int i = start; i >= 0; --i) {
+            int multiplication = (num1[i] - '0') * (num2_digit - '0') + carry;
+            carry = multiplication / 10;
+            result.append(std::to_string(multiplication % 10));
+        }
+        if (carry) {
+            result.append(std::to_string(carry));
+        }
+        std::reverse(result.begin(), result.end());
+        for (int i = 0; i < num_zeros; ++i) {
+            result.push_back('0');
+        }
+        return result;
+    }
+
+    std::string multiply(const std::string &num1, const std::string &num2) {
+        if (num1 == "0" || num2 == "0") {
+            return "0";
+        }
+        std::string result;
+        std::string prev_digit = "0";
+        int start = static_cast<int>(num2.size()) - 1;
+        for (int i = start; i >= 0; --i) {
+            std::string current_digit = multiply_one_digit(num1, num2[i], start - i);
+            result = add(current_digit, prev_digit);
+            prev_digit = result;
+        }
+
         return result;
     }
 
@@ -137,6 +173,22 @@ LongArithmetic &LongArithmetic::operator-=(const LongArithmetic &big_int) {
 LongArithmetic LongArithmetic::operator-(const LongArithmetic &big_int) {
     LongArithmetic num(*this);
     num -= big_int;
+    return num;
+}
+
+LongArithmetic &LongArithmetic::operator*=(const LongArithmetic &big_int) {
+    LongArithmetic num(*this);
+    this->value = multiply(this->getAbsoluteValue(), big_int.getAbsoluteValue());
+    if (this->sign != big_int.sign) {
+        this->sign = true;
+        this->value.insert(0, "-");
+    }
+    return (*this);
+}
+
+LongArithmetic LongArithmetic::operator*(const LongArithmetic &big_int) {
+    LongArithmetic num(*this);
+    num *= big_int;
     return num;
 }
 

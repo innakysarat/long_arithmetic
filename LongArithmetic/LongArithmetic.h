@@ -17,9 +17,13 @@ public:
 
     LongArithmetic &operator-=(const LongArithmetic &value);
 
+    LongArithmetic &operator*=(const LongArithmetic &value);
+
     LongArithmetic operator+(const LongArithmetic &big_integer);
 
     LongArithmetic operator-(const LongArithmetic &big_integer);
+
+    LongArithmetic operator*(const LongArithmetic &big_integer);
 
     bool operator==(const LongArithmetic &big_integer) const;
 
